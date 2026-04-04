@@ -79,6 +79,16 @@ unit-tests: dev
 		$(DEV_OCI_IMAGE) \
 		make unit-tests-local
 
+playwright:
+	cd test && $(CONTAINER_PGRM) compose up -d
+	trap 'cd ../test && $(CONTAINER_PGRM) compose down' EXIT;
+	cd ../app && npx playwright test
+
+playwright-ui:
+	cd test && $(CONTAINER_PGRM) compose up -d
+	trap 'cd ../test && $(CONTAINER_PGRM) compose down' EXIT;
+	cd ../app && npx playwright test --ui
+
 start-dev: dev
 	$(CONTAINER_PGRM) run --rm -it --name "zusam" \
 		-e UID=$(UID) -e GID=$(GID) \
