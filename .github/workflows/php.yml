@@ -15,7 +15,7 @@ jobs:
     steps:
       # https://github.com/marketplace/actions/checkout
       - name: Checkout code
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
 
       # https://github.com/shivammathur/setup-php
       - name: Setup PHP
@@ -35,7 +35,7 @@ jobs:
         run: cd api && php bin/phpunit
 
       - name: Run static analysis
-        run: cd api && php bin/composer analyze
+        run: cd api && composer analyze
 
       - name: Run linting
-        run: cd api && php bin/composer lint
+        run: cd api && composer lint

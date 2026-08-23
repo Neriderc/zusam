@@ -10,7 +10,9 @@
     "prebuild": "npm run lang",
     "prelang": "npm run clean",
     "analyze": "npx eslint -c eslint.config.js src/",
-    "stylelint": "npx stylelint src/scss/**/*.scss"
+    "fix": "npx eslint -c eslint.config.js src/ --fix",
+    "stylelint": "npx stylelint src/scss/**/*.scss",
+    "stylelint:fix": "npx stylelint src/scss/**/*.scss --fix"
   },
   "dependencies": {
     "@nanostores/preact": "^1.0.0",
@@ -45,7 +47,9 @@
     "@parcel/transformer-image": "^2.15.4",
     "@parcel/transformer-sass": "^2.15.4",
     "@parcel/transformer-webmanifest": "^2.15.4",
+    "@playwright/test": "^1.58.2",
     "@size-limit/preset-app": "^12.0.0",
+    "@types/node": "^25.5.0",
     "babel-plugin-module-resolver": "^5.0.2",
     "eslint": "^9.32.0",
     "eslint-plugin-compat": "^6.0.2",

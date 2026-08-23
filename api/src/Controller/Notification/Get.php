@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityNotFoundException;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Nelmio\ApiDocBundle\Annotation\Security;
 use OpenApi\Annotations as OA;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -49,6 +50,9 @@ class Get extends ApiController
         if (empty($notification)) {
             return new JsonResponse(['error' => 'Not Found'], Response::HTTP_NOT_FOUND);
         }
+
+        $this->denyAccessUnlessGranted(new Expression('user == object'), $notification->getOwner());
+
         $notification_data_output = $this->normalize($notification, ['read_notification']);
         $notification_data_output['fromGroup'] = $this->normalize($notification->getFromGroup(), ['read_notification']);
 
